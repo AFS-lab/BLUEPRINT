@@ -149,17 +149,17 @@
 #
 #   mkdir ./ES_cell_data
 
-  #Download single-cell (and bulk) data
-  cd ES_cell_data
-  cat ../urls.txt | xargs -n 1 -P 1 wget -t 100 -q
+  # #Download single-cell (and bulk) data
+  # cd ES_cell_data
+  # cat ../urls.txt | xargs -n 1 -P 1 wget -t 100 -q
+  #
+  # mkdir software
+  # cd software
+  # wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.9.0/sratoolkit.2.9.0-ubuntu64.tar.gz
+  # tar -xvzf sratoolkit.2.9.0-ubuntu64.tar.gz
+  # cd ..
 
-  mkdir software
-  cd software
-  wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.9.0/sratoolkit.2.9.0-ubuntu64.tar.gz
-  tar -xvzf sratoolkit.2.9.0-ubuntu64.tar.gz
-  cd ..
-
-  for i in ES_cell_data/*;
+  for i in *.sra;
   do
     ./software/sratoolkit.2.9.0-ubuntu64/bin/fastq-dump --split-3 $i
   done
