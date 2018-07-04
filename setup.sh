@@ -5,10 +5,8 @@ setup(){
 
   #First make a directory in which simulation data and programs will be kept
   mkdir ./Simulation
+  cd Simulation
 
-
-  #Install programs in directory
-  cd ../Simulation
 
   #Install RSEM
   wget https://github.com/deweylab/RSEM/archive/v1.3.0.tar.gz
