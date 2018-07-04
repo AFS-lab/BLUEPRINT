@@ -5,23 +5,7 @@ setup(){
 
   #First make a directory in which simulation data and programs will be kept
   mkdir ./Simulation
-  mkdir ./ES_cell_data
 
-  #Download single-cell (and bulk) data
-  cd ES_cell_data
-  cat ../urls.txt | xargs -n 1 -P 1 wget -t 100 -q
-
-  mkdir software
-  cd software
-  wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.9.0/sratoolkit.2.9.0-ubuntu64.tar.gz
-  tar -xvzf sratoolkit.2.9.0-ubuntu64.tar.gz
-  cd ..
-
-  for i in ES_cell_data/*;
-  do
-    core=`echo $i | awk -F. '{print $1}'`
-    ./software/sratoolkit.2.9.0-ubuntu64/bin/fastq-dump --split-3 $i
-  done
 
   #Install programs in directory
   cd ../Simulation
@@ -161,6 +145,26 @@ setup(){
   mkdir figures/data
   mkdir figures/pngs
   mkdir figures/pdfs
+
+  mkdir Polyester_Simulations
+  cp -r * Polyester_Simulations
+
+  mkdir ./ES_cell_data
+
+  #Download single-cell (and bulk) data
+  cd ES_cell_data
+  cat ../urls.txt | xargs -n 1 -P 1 wget -t 100 -q
+
+  mkdir software
+  cd software
+  wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.9.0/sratoolkit.2.9.0-ubuntu64.tar.gz
+  tar -xvzf sratoolkit.2.9.0-ubuntu64.tar.gz
+  cd ..
+
+  for i in ES_cell_data/*;
+  do
+    ./software/sratoolkit.2.9.0-ubuntu64/bin/fastq-dump --split-3 $i
+  done
 
 }
 
