@@ -64,3 +64,19 @@ cp -r Simulation/QC_stats/simulated raw_results/data/
 # Rscript SupplementaryFigure12.R
 # Rscript SupplementaryFigure16.R
 # Rscript SupplementaryFigure17.R
+
+cd Polyester_Simulations
+./RSEM_ref.sh make_ref $path_to_ref_gtf $path_to_ref_fasta
+./make_indexes.sh $path_to_ref_gtf $path_to_ref_fasta
+
+for i in ../ES_cell_data/*_1.fastq;
+do
+  bsub -n8 -R"span[hosts=1]" -c 99999 -G team_hemberg -q normal -o $TEAM/temp.logs/output.$filename -e $TEAM/temp.logs/error.$filename -R"select[mem>100000] rusage[mem=100000]" -M100000 ./first_half_polyester.sh $i
+done
+
+python generate.py Kallisto_real `pwd` Simulation/Kallisto_results_real_data
+chmod +x Kallisto_real_Counts.sh
+./Kallisto_real_Counts.sh
+./clean_data.sh
+
+Rscript make_splatter.R
