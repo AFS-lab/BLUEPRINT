@@ -11,7 +11,7 @@ done
 
 for file in sim_bias*[0-9];
 do
-  number=`echo $file| awk -Fd '{print $2}'`
+  number=`echo $file| awk -Fd '{print $3}'`
   cp $file/sample_01_1.fasta simulated/samplebias_$number"_1.fasta"
   cp $file/sample_01_2.fasta simulated/samplebias_$number"_2.fasta"
 done
