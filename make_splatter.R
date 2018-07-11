@@ -100,6 +100,6 @@ lun2Params<-lun2Estimate(data.matrix(MaleB, rownames.force=TRUE), as.factor(make
 save(lun2Params, file="Bs_zeros_removed_25_09_param") 
 
 #Use lun2params to simulate gene counts
-simulated_counts<-lun2Simulate(params = lun2Params, nGenes=59548)
+simulated_counts<-lun2Simulate(params = lun2Params, nGenes=59183)
 simulated_counts<-counts(simulated_counts)
 write.table(simulated_counts,"raw_results/data/orig_splatter_sim_counts.txt")
