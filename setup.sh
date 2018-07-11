@@ -115,8 +115,9 @@ setup(){
   pip install bz2file
 
   #Install bbtools
-  wget https://sourceforge.net/projects/bbmap/files/latest/download/BBMap_38.11.tar.gz
-  tar -xvzf BBMap_38.11.tar.gz
+  wget https://sourceforge.net/projects/bbmap/files/BBMap_37.50.tar.gz
+
+  tar -xvzf BBMap_37.50.tar.gz
 
   #Make a directory for RNA-seq data including raw and simulated data
   mkdir data
