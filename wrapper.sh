@@ -18,7 +18,7 @@ cd Polyester_Simulations
 #Run Kallisto + calculate QC stats for Splatter simulations
 for i in ../ES_cell_data/*_1.fastq;
 do
-  bsub -n8 -R"span[hosts=1]" -c 99999 -G team_hemberg -q normal -o $TEAM/temp.logs/output.$i -e $TEAM/temp.logs/error.$i -R"select[mem>100000] rusage[mem=100000]" -M100000 ./first_half_polyester.sh $i
+  ./first_half_polyester.sh $i
 done
 
 #Format data + move into correct dirs
@@ -33,8 +33,13 @@ cp Simulation/results_matrices/clean* raw_results/data/
 #Run splatter + polyester simulations
 Rscript make_splatter.R
 ./control_polyester_script.sh
+./convert_fasta_to_fastq.sh
 
 #Do benchmarking on splatter/polyester simulated data
+for i in Simulation/data/simulated/*_1.fq;
+do
+  ./second_half_polyester.sh $i
+done
 
 #Make results matrices and move to appropriate location
 
