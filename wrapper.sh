@@ -38,7 +38,8 @@
 #Do benchmarking on splatter/polyester simulated data
 for i in Simulation/data/simulated/*_1.fq;
 do
-  ./second_half_polyester.sh $i
+  filename=`echo $i | awk -F/ '{print $NF}'`
+  bsub -n8 -R"span[hosts=1]" -c 99999 -G team_hemberg -q normal -o $TEAM/temp.logs/output.$filename -e $TEAM/temp.logs/error.$filename -R"select[mem>100000] rusage[mem=100000]" -M100000 ./second_half_polyester.sh $filename
 done
 
 # #Make results matrices and move to appropriate location
