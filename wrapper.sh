@@ -60,7 +60,20 @@ done
 # cp -r Simulation/QC_stats/simulated raw_results/data/
 #
 # #Now the RSEM simulations...
-# cd ..
+# cd ../ES_cell_data
+#
+# #Download bulk data
+# wget ftp://ftp-trace.ncbi.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR523/SRR5237781/SRR5237781.sra
+# ./software/sratoolkit.2.9.0-ubuntu64/bin/fastq-dump --split-3 SRR5237781.sra
+#
+# wget ftp://ftp-trace.ncbi.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR523/SRR5237782/SRR5237782.sra
+# ./software/sratoolkit.2.9.0-ubuntu64/bin/fastq-dump --split-3 SRR5237782.sra
+#
+# wget ftp://ftp-trace.ncbi.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR523/SRR5237783/SRR5237783.sra
+# ./software/sratoolkit.2.9.0-ubuntu64/bin/fastq-dump --split-3 SRR5237783.sra
+#
+# #Remove rRNA contamination
+#
 #
 # #Simulate + benchmark RSEM simulated data
 # for i in ES_cell_data/*_1.fastq;
@@ -95,7 +108,7 @@ done
 # cp Simulation/results_matrices/clean* raw_results/data/
 # cp -r Simulation/QC_stats/raw raw_results/data/
 # cp -r Simulation/QC_stats/simulated raw_results/data/
-
+#
 # #format data to make figures
 # cd raw_results
 # Rscript Figure2.R
@@ -117,8 +130,8 @@ done
 # Rscript SupplementaryFigure12.R
 # Rscript SupplementaryFigure16.R
 # Rscript SupplementaryFigure17.R
-
-
+#
+#
 #
 # python generate.py Kallisto_real `pwd` Simulation/Kallisto_results_real_data
 # chmod +x Kallisto_real_Counts.sh
