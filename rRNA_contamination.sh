@@ -1,3 +1,5 @@
+#!/bin/bash
+
 filename=$1
 path_to_java=$2
 
@@ -10,6 +12,6 @@ deactivate
 rm ES_cell_data/$filename"_1.fastq"
 rm ES_cell_data/$filename"_2.fastq"
 $path_to_java -XX:MaxHeapSize=1000m -jar picard.jar SamToFastq \
-I=ES_cell_data/$filename"Aligned.sortedByCoord.out.bam" \
+I=ES_cell_data/$filename".ex.bam" \
 FASTQ=ES_cell_data/$filename"_1.fastq" \
 SECOND_END_FASTQ=ES_cell_data/$filename"_2.fastq"

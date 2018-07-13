@@ -18,9 +18,9 @@ sed -i.bak '0,/read5000001/! s/read5000001/read5000001a/' Simulation/data/simula
 sed -i.bak '0,/read6000001/! s/read6000001/read6000001a/' Simulation/data/simulated/$filename'_2.fq'
 
 
-# ./quality_control.sh qualitycontrol $filename Simulation/data/simulated '_1.fq' "simulated"
-# ./quantify.sh Kallisto $filename
-# ./quantify.sh eXpress $filename
-# ./quantify.sh Salmon $filename
+./quality_control.sh qualitycontrol $filename Simulation/data/simulated '_1.fq' "simulated"
+./quantify.sh Kallisto $filename
+./quantify.sh eXpress $filename
+./quantify.sh Salmon $filename
 ./quantify.sh RSEM $filename
-# ./quantify.sh Sailfish $filename
+./quantify.sh Sailfish $filename

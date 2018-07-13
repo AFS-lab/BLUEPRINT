@@ -172,6 +172,8 @@ setup(){
 
   wget https://github.com/FelixKrueger/TrimGalore/0.5.0.zip
   unzip 0.5.0.zip
+
+  wget https://github.com/broadinstitute/picard/releases/download/2.18.0/picard.jar
   cd ..
 
   for i in *.sra;
