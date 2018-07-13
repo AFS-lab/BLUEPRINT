@@ -36,7 +36,7 @@ simulate() {
  reads="$(echo $((lines / 4)))"
 
 #process bulk without single cell priors
- if [ "$filename" == "ERR522956" ]
+ if [ "$filename" == "SRR5237781" ] || [ "$filename" == "SRR5237782" ] || [ "$filename" == "SRR5237783" ]
  then
    echo 'bulk sample being simulated'
    #Use RSEM to calculate expression
