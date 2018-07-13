@@ -20,7 +20,6 @@ RSEM(){
            --star-path Simulation/STAR/bin/Linux_x86_64/ \
            -p 8 \
            --append-names \
-          --output-genome-bam \
           Simulation/data/simulated/$filename'_1.fq' Simulation/data/simulated/$filename'_2.fq' \
           Simulation/ref/reference Simulation/RSEM_results/$filename
     else
@@ -29,7 +28,6 @@ RSEM(){
             --star-path Simulation/STAR/bin/Linux_x86_64/ \
             -p 8 \
                         --append-names \
-                        --output-genome-bam \
             --single-cell-prior --calc-pme \
                         Simulation/data/simulated/$filename'_1.fq' Simulation/data/simulated/$filename'_2.fq' \
                         Simulation/ref/reference Simulation/RSEM_results/$filename
