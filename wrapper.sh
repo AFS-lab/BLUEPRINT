@@ -3,6 +3,7 @@
 # #rename command line arguments
 # path_to_ref_fasta=$1
 # path_to_ref_gtf=$2
+# path_to_java=$3
 #
 # #Make indexes + RSEM ref for RSEM simulations
 # ./setup.sh setup
@@ -34,14 +35,14 @@
 # Rscript make_splatter.R
 # ./control_polyester_script.sh
 # ./convert_fasta_to_fastq.sh
-
-#Do benchmarking on splatter/polyester simulated data
-for i in Simulation/data/simulated/*_1.fq;
-do
-  filename=`echo $i | awk -F/ '{print $NF}'`
-  bsub -n8 -R"span[hosts=1]" -c 99999 -G team_hemberg -q normal -o $TEAM/temp.logs/output.$filename -e $TEAM/temp.logs/error.$filename -R"select[mem>100000] rusage[mem=100000]" -M100000 ./second_half_polyester.sh $filename
-done
-
+#
+# #Do benchmarking on splatter/polyester simulated data
+# for i in Simulation/data/simulated/*_1.fq;
+# do
+#   filename=`echo $i | awk -F/ '{print $NF}'`
+#   bsub -n8 -R"span[hosts=1]" -c 99999 -G team_hemberg -q normal -o $TEAM/temp.logs/output.$filename -e $TEAM/temp.logs/error.$filename -R"select[mem>100000] rusage[mem=100000]" -M100000 ./second_half_polyester.sh $filename
+# done
+#
 # #Make results matrices and move to appropriate location
 # ./make_matrix.sh make_matrix RSEM
 # ./make_matrix.sh make_matrix eXpress
@@ -72,23 +73,27 @@ done
 # wget ftp://ftp-trace.ncbi.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR523/SRR5237783/SRR5237783.sra
 # ./software/sratoolkit.2.9.0-ubuntu64/bin/fastq-dump --split-3 SRR5237783.sra
 #
-# #Simulate + benchmark RSEM simulated data
-# for i in ES_cell_data/*_1.fastq;
-# do
-#   num_jobs=`bjobs | wc -l`
-#   max_jobs=30
-#   filename=`echo $i | awk -F/ '{print $2}'`
-#
-#   #This prevents the number of queued jobs greatly exceeding 30.
-#   while [[ $num_jobs -gt $max_jobs ]];
-#   do
-#     sleep 100
-#     num_jobs=`bjobs | wc -l`
-#   done
-#
-#   bsub -n8 -R"span[hosts=1]" -c 99999 -G team_hemberg -q normal -o $TEAM/temp.logs/output.$filename -e $TEAM/temp.logs/error.$filename -R"select[mem>100000] rusage[mem=100000]" -M100000 ./cell_level_analysis.sh $filename
-# done
-#
+# #deal with rRNA contamination
+
+
+
+#Simulate + benchmark RSEM simulated data
+for i in ES_cell_data/*_1.fastq;
+do
+  num_jobs=`bjobs | wc -l`
+  max_jobs=30
+  filename=`echo $i | awk -F/ '{print $2}'`
+
+  #This prevents the number of queued jobs greatly exceeding 30.
+  while [[ $num_jobs -gt $max_jobs ]];
+  do
+    sleep 100
+    num_jobs=`bjobs | wc -l`
+  done
+
+  bsub -n8 -R"span[hosts=1]" -c 99999 -G team_hemberg -q normal -o $TEAM/temp.logs/output.$filename -e $TEAM/temp.logs/error.$filename -R"select[mem>100000] rusage[mem=100000]" -M100000 ./cell_level_analysis.sh $filename
+done
+
 # #make results matrices
 # ./make_matrix.sh make_matrix RSEM
 # ./make_matrix.sh make_matrix eXpress
