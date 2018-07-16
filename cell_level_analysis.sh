@@ -11,4 +11,4 @@ filename=`echo $1 |awk -F_ '{print $1}'`
 ./quantify.sh Salmon $filename
 ./quantify.sh RSEM $filename
 ./quantify.sh Sailfish $filename
-./quantify_real_data.sh Kallisto $filename
+./quantify_real_data.sh Kallisto $filename ES_cell_data
