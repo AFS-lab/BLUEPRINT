@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-#Create simulated counts matrix and fastq file for simulation transcriptome
-#/software/R-3.4.2/bin/Rscript format_counts.R
+#This script creates a simulated counts matrix and fasta file for simulation transcriptome.
+#It also calculate TPM values and rename 'Gene1', 'Gene2' etc with isoform names.
+/software/R-3.4.2/bin/Rscript format_counts.R
 mkdir Simulation/data/sim_bias
 
 END=`head -n1 raw_results/data/simulated_counts.txt | wc -w`

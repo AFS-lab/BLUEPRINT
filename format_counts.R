@@ -1,9 +1,7 @@
 library(Biostrings)
 
-#read and name command line arguments
-args <- commandArgs(trailingOnly = TRUE)
-mean_fragment_length<-args[1]
-sd_fragment_length<-args[2]
+#########################################################
+#CREATE TRANSCRIPTOME
 
 #Load Kallisto estimated counts from real data
 Kallisto_real_data<-read.table("raw_results/data/clean_Kallisto_real_Counts.txt", header=T,row.names = 1)
@@ -18,8 +16,18 @@ simulated_counts<-read.table("raw_results/data/orig_splatter_sim_counts.txt", he
 fasta = readDNAStringSet("Simulation/ref/reference.transcripts.fa")
 small_fasta<-fasta[names(fasta) %in% rownames(MaleB)]
 writeXStringSet(small_fasta, "polyester_transcripts")
+
+
+###########################################################
+#RENAME ROWS OF SPLATTER COUNTS MATRIX
+
+#Here we rename the rows of the Splatter simulated counts with the isoform names in the fasta file.
+#This works because polyester parses through the fasta file from start to end when simulating.
 rownames(simulated_counts)<-names(small_fasta)
-write.table(simulated_counts, "raw_results/data/simulated_counts.txt")
+write.table(simulated_counts, "raw_results/data/ground_truth_counts.txt")
+
+#############################################################
+# CALCULATE TPMs
 
 #make scaling vector
 RPK<-vector(length=ncol(simulated_counts))
