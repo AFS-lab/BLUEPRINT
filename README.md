@@ -18,6 +18,8 @@ Execute ./wrapper.sh path/to/java path/to/ref/fasta path/to/ref/gtf
 
 In practice it is unlikely that your machine will have the resources to run the entire pipeline in one go, so you will probably need to split up the wrapper script and run it in bits.
 
+The pipeline automatically downloads the required data. In addition, a list of SRR accession codes can be found in SRR_Acc_List.txt.
+
 As part of the pipeline, quality control steps are automatically carried out. For reference, these are the statistics used to filter the raw data:
 
 | Statistic | Name of statistic in table | Threshold |
