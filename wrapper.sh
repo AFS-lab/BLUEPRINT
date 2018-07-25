@@ -23,7 +23,7 @@ do
 done
 
 #Format data + move into correct dirs. The Kallisto matrix generated below is
-used as input for the Splatter simulations
+#used as input for the Splatter simulations
 python generate.py Kallisto_real `pwd` Simulation/Kallisto_results_real_data
 chmod +x Kallisto_real_Counts.sh
 ./Kallisto_real_Counts.sh
@@ -153,12 +153,3 @@ Rscript SupplementaryFigure11.R
 Rscript SupplementaryFigure12.R
 Rscript SupplementaryFigure16.R
 Rscript SupplementaryFigure17.R
-
-
-
-python generate.py Kallisto_real `pwd` Simulation/Kallisto_results_real_data
-chmod +x Kallisto_real_Counts.sh
-./Kallisto_real_Counts.sh
-./clean_data.sh
-
-Rscript make_splatter.R
