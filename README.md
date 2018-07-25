@@ -34,4 +34,3 @@ These are the statistics used to filter the Polyester simulated data:
 |No. of non-uniquely mapping reads| NonUnique | >250,000|
 
 In addition, the scater package was used to filter cells in which more than 10% of reads mapped to mitochondrial genes in both the raw and simulated data.
-
