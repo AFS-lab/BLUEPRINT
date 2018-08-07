@@ -9,8 +9,8 @@ path_to_java=$2
 source Simulation/venv/bin/activate
 split_bam.py -i ES_cell_data/$filename"Aligned.sortedByCoord.out.bam" -r no_chr_mm10_rRNA.bed -o ES_cell_data/$filename
 deactivate
-#rm ES_cell_data/$filename"_1.fastq"
-#rm ES_cell_data/$filename"_2.fastq"
+rm ES_cell_data/$filename"_1.fastq"
+rm ES_cell_data/$filename"_2.fastq"
 $path_to_java -XX:MaxHeapSize=1000m -jar ES_cell_data/software/picard.jar SamToFastq \
 I=ES_cell_data/$filename".ex.bam" \
 FASTQ=ES_cell_data/'rRNA_filtered_'$filename"_1.fastq" \
