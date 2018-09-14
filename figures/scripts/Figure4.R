@@ -42,7 +42,7 @@ B_bulk<-read.table("../data/Figure4.txt")
 B_bulk<-cbind(B_bulk[,1:2], Value=B_bulk[,4], Experiment="bulk")
 
 #Read in Blueprint
-B_single<-read.table("../data/Figure1.txt")
+B_single<-read.table("../data/Figure2.txt")
 
 #Only keep RSEM Blueprint simulations
 B_single<-B_single[B_single$Simulation=="RSEMsim",]
@@ -70,11 +70,11 @@ precision<-make_ggplot(B_precision, "Precision", "Precision")
 recall<-make_ggplot(B_recall, "Recall", "Recall")
 F1<-make_ggplot(B_F1, "F1", "F1")
 
-ggarrange(F1, ggarrange(precision, recall, nrow=2), spearmans,nrmse,                                         
+ggarrange(F1, ggarrange(precision, recall, nrow=2), spearmans,nrmse,
           nrow = 2,
           ncol = 2,
-          labels = c("A","","B", "C")                                 
-) 
+          labels = c("A","","B", "C")
+)
 
 ggsave("../pdfs/Figure4.pdf", plot = last_plot(), width=170 *2, units=c("mm") )
 ggsave("../pngs/Figure4.png", plot = last_plot(), width=170 *2, units=c("mm") )

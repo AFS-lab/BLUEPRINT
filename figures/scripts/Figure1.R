@@ -29,7 +29,7 @@ plot_data<-function( df, title, ylabel, xlabel, ylimits) {
 # MAKE FIGURE 1
 
 #Read in performance statistics
-ggplot_results<-read.table("../data/Figure1.txt")
+ggplot_results<-read.table("../data/Figure2.txt")
 
 #Set levels for plotting
 ggplot_results$Simulation<-factor(ggplot_results$Simulation, levels=c("RSEMsim", "bias","unbias"))
@@ -61,12 +61,12 @@ recall_graph<-plot_data(recall, "Recall", "Recall", "", c(0,1))
 F1_graph<-plot_data(F1, "F1", "F1", "", c(0,1))
 
 #arrange in figure
-ggarrange(F1_graph,ggarrange(precision_graph,recall_graph, nrow=2),leg, spearmans_graph,nrmse_graph,                                        
+ggarrange(F1_graph,ggarrange(precision_graph,recall_graph, nrow=2),leg, spearmans_graph,nrmse_graph,
           nrow = 2,
           ncol = 3,
           labels = c("A","","","B","C",""),
           widths=c(2,2,2)
-) 
+)
 
-ggsave("../pdfs/Figure1.pdf", plot=last_plot(), height= 225, width=170, units=c("mm"))
-ggsave("../pngs/Figure1.png", last_plot(), height= 225, width=170, units=c("mm"))
+ggsave("../pdfs/Figure2.pdf", plot=last_plot(), height= 225, width=170, units=c("mm"))
+ggsave("../pngs/Figure2.png", last_plot(), height= 225, width=170, units=c("mm"))
