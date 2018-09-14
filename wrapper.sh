@@ -146,6 +146,7 @@ Rscript SupplementaryFigure12.R
 #make figure pdfs
 cd ../figures/scripts
 Rscript Figure2.R
+Rscript Figure4.R
 Rscript Figure5.R
 Rscript Figure6.R
 Rscript SupplementaryFigure10.R
